@@ -5,13 +5,15 @@ import { apiService } from "../../services/api.service";
 
 type MoviesSliceType = {
   movies: IMovie[];
-  page: string | null;
+  movie: IMovie | null;
+  page: number | string | null;
   totalPages: number | null;
   totalResults: number | null;
 };
 
 const moviesInitialState: MoviesSliceType = {
   movies: [],
+  movie: null,
   page: null,
   totalPages: null,
   totalResults: null,
@@ -34,40 +36,13 @@ const changePageAndLoadMovies = createAsyncThunk(
   }
 );
 
-// const loadMovies = createAsyncThunk(
-//   "moviesSlice/loadMovies",
-//   async (_, thunkAPI) => {
-//     try {
-//       const state = thunkAPI.getState() as MoviesSliceType;
-//       if (state.page) {
-//         const moviesResponse = await apiService.getMoviesList({
-//           page: state.page,
-//         });
-//         return thunkAPI.fulfillWithValue(moviesResponse.data);
-//       }
-//     } catch (e) {
-//       const error = e as AxiosError;
-//       return thunkAPI.rejectWithValue(error.response?.data);
-//     }
-//   }
-// );
-
-// const loadPostById = createAsyncThunk(
-//   "postSlice/loadPostById",
-//   async (id: string | undefined, thunkAPI) => {
-//     if (id) {
-//       try {
-//         const post = await postService.getById(id);
-//         thunkAPI.dispatch(postActions.changeLoadState(true));
-//         return thunkAPI.fulfillWithValue(post);
-//       } catch (e) {
-//         const error = e as AxiosError;
-//         return thunkAPI.rejectWithValue(error.response?.data);
-//       }
-//     }
-//     return null;
-//   }
-// );
+const loadMovie = createAsyncThunk(
+  "moviesSlice/loadMovie",
+  async (id: number | string, thunkApi) => {
+    const movieResponse = await apiService.getMovieDetails({ id });
+    return thunkApi.fulfillWithValue(movieResponse.data);
+  }
+);
 
 export const moviesSlice = createSlice({
   name: "moviesSlice",
@@ -81,6 +56,9 @@ export const moviesSlice = createSlice({
     builder.addCase(changePageAndLoadMovies.fulfilled, (state, action) => {
       state.page = action.payload?.page || null;
       state.movies = action.payload?.results || [];
+    });
+    builder.addCase(loadMovie.fulfilled, (state, action) => {
+      state.movie = action.payload || null;
     });
     // builder.addCase(loadPosts.rejected, (state) => {
     //   state.posts = [];
@@ -99,7 +77,7 @@ export const moviesSlice = createSlice({
 
 export const moviesActions = {
   ...moviesSlice.actions,
-  // loadMovies,
   changePageAndLoadMovies,
+  loadMovie,
   // loadPostById,
 };
