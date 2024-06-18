@@ -1,0 +1,18 @@
+.moviesList {
+  list-style-type: none;
+  display: flex;
+  gap: 2em;
+  flex-direction: row;
+  padding: 0;
+  flex-wrap: wrap;
+}
+
+.moviesList li {
+  border: 1px solid gray;
+  width: 12em;
+}
+
+.moviesList h2 {
+  font-size: 0.8em;
+  margin: 0.5em
+}

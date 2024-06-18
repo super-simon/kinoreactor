@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
-import MoviesComponent from "../components/Movies/MoviesComponent";
+import MoviesListComponent from "../components/Movies/MoviesListComponent";
 import MoviesPaginationComponent from "../components/Movies/MoviesPaginationComponent";
 import { moviesActions } from "../redux/slices/moviesSlice";
 import { useAppDispatch } from "../redux/store";
@@ -21,7 +21,7 @@ const MainPage = () => {
     <>
       MainPage
       <br />
-      <MoviesComponent />
+      <MoviesListComponent />
       <MoviesPaginationComponent />
     </>
   );
