@@ -6,7 +6,7 @@ import { apiService } from "../../services/api.service";
 type MoviesSliceType = {
   movies: IMovie[];
   movie: IMovie | null;
-  page: number | string | null;
+  page: number | null;
   totalPages: number | null;
   totalResults: number | null;
 };
@@ -23,7 +23,7 @@ const changePageAndLoadMovies = createAsyncThunk(
   "moviesSlice/changePage",
   async (page: string, thunkAPI) => {
     const state = thunkAPI.getState() as MoviesSliceType;
-    if (page && state.page != page) {
+    if (page && state.page != +page) {
       try {
         const moviesResponse = await apiService.getMoviesList({ page });
         // thunkAPI.dispatch(moviesActions.changePage(page));
@@ -55,6 +55,8 @@ export const moviesSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(changePageAndLoadMovies.fulfilled, (state, action) => {
       state.page = action.payload?.page || null;
+      state.totalPages = action.payload?.total_pages || null;
+      state.totalResults = action.payload?.total_results || null;
       state.movies = action.payload?.results || [];
     });
     builder.addCase(loadMovie.fulfilled, (state, action) => {

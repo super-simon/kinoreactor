@@ -9,7 +9,10 @@
 
 .moviesList li {
   border: 1px solid gray;
+  border-radius: 10px;
+  overflow: hidden;
   width: 12em;
+
 }
 
 .moviesList h2 {
