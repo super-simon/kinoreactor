@@ -11,11 +11,10 @@ const MoviesPaginationComponent = () => {
     lastRangeLength: number,
     lastRange: number[],
     middleRangeStart: number,
-    middleRangeEnd: number;
-  let middleRange: number[] = [];
+    middleRangeEnd: number,
+    middleRange: number[] = [];
 
   if (totalPages && page) {
-    console.log(totalPages);
     firstRangeLength = totalPages && totalPages >= 5 ? 5 : totalPages;
     if ((page == 4 || page == 5) && totalPages >= 6) {
       firstRangeLength = 6;
@@ -71,7 +70,6 @@ const MoviesPaginationComponent = () => {
       : [];
 
     if (firstRangeLength < page && totalPages - lastRangeLength > page) {
-      console.log("middle range");
       middleRangeStart = page - 2;
       if (firstRangeLength > middleRangeStart) {
         middleRangeStart = firstRangeLength + 1;
@@ -94,8 +92,6 @@ const MoviesPaginationComponent = () => {
     lastRange = [];
     middleRange = [];
   }
-
-  console.log(middleRange, middleRange.length);
 
   return (
     <>

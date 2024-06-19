@@ -1,5 +1,6 @@
 import axios, { AxiosResponse } from "axios";
 import { baseURL, urls } from "../constants/urls";
+import { IGenres } from "../models/IGenres";
 import { IMovie } from "../models/IMovie";
 import { IMovies } from "../models/IMovies";
 
@@ -26,6 +27,11 @@ export const apiService = {
     id: string | number;
   }): Promise<AxiosResponse<IMovie>> => {
     const res = await axiosInstance.get<IMovie>(urls.movies.details(id));
+    return res;
+  },
+
+  getGenresList: async (): Promise<AxiosResponse<IGenres>> => {
+    const res = await axiosInstance.get<IGenres>(urls.genres.movie);
     return res;
   },
 };

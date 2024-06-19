@@ -1,5 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { useDispatch, useSelector } from "react-redux";
+import { genresSlice } from "./slices/genresSlice";
 import { moviesSlice } from "./slices/moviesSlice";
 import { settingsSlice } from "./slices/settingsSlice";
 
@@ -7,6 +8,7 @@ export const store = configureStore({
   reducer: {
     moviesSlice: moviesSlice.reducer,
     settingsSlice: settingsSlice.reducer,
+    genresSlice: genresSlice.reducer,
   },
 });
 

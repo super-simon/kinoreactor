@@ -9,10 +9,6 @@ const urls = {
     movie: "/genre/movie/list",
     tv: "/genre/tv/list",
   },
-  // tvs: {
-  //   base: "/discover/tv",
-  //   byId: (id: string | number) => `/find/${id}`,
-  // },
 };
 
 export { baseURL, urls };
