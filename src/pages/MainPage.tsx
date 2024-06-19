@@ -21,6 +21,7 @@ const MainPage = () => {
     <>
       MainPage
       <br />
+      <MoviesPaginationComponent />
       <MoviesListComponent />
       <MoviesPaginationComponent />
     </>
