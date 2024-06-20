@@ -5,7 +5,7 @@ import PaginationButtonComponent from "../Pagination/PaginationButtonComponent";
 import "./MoviesPaginationComponent.css";
 
 const MoviesPaginationComponent = () => {
-  const { page, totalPages, selectedGenres } = useAppSelector(
+  const { page, totalPages, selectedGenres, searchPhrase } = useAppSelector(
     (state) => state.moviesSlice
   );
 
@@ -108,6 +108,7 @@ const MoviesPaginationComponent = () => {
                   search: generateSearchQuery({
                     page: 1,
                     genres: selectedGenres,
+                    search: searchPhrase,
                   }),
                 }}
               >
@@ -123,6 +124,7 @@ const MoviesPaginationComponent = () => {
                   search: generateSearchQuery({
                     page: page - 1,
                     genres: selectedGenres,
+                    search: searchPhrase,
                   }),
                 }}
               >
@@ -173,6 +175,7 @@ const MoviesPaginationComponent = () => {
                   search: generateSearchQuery({
                     page: page + 1,
                     genres: selectedGenres,
+                    search: searchPhrase,
                   }),
                 }}
               >
@@ -188,6 +191,7 @@ const MoviesPaginationComponent = () => {
                   search: generateSearchQuery({
                     page: totalPages,
                     genres: selectedGenres,
+                    search: searchPhrase,
                   }),
                 }}
               >

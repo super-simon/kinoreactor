@@ -8,9 +8,11 @@ interface IProps {
 }
 
 const PaginationButtonComponent: FC<IProps> = ({ title }) => {
-  const { selectedGenres, page: currentPage } = useAppSelector(
-    (state) => state.moviesSlice
-  );
+  const {
+    selectedGenres,
+    page: currentPage,
+    searchPhrase,
+  } = useAppSelector((state) => state.moviesSlice);
 
   return (
     <>
@@ -23,6 +25,7 @@ const PaginationButtonComponent: FC<IProps> = ({ title }) => {
             search: generateSearchQuery({
               page: title,
               genres: selectedGenres,
+              search: searchPhrase,
             }),
           }}
         >

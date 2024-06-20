@@ -21,6 +21,17 @@ export const apiService = {
     return res;
   },
 
+  searchMoviesList: async ({
+    query,
+  }: {
+    query: string;
+  }): Promise<AxiosResponse<IMovies>> => {
+    const res = await axiosInstance.get<IMovies>(
+      urls.movies.search + query ?? ""
+    );
+    return res;
+  },
+
   getMovieDetails: async ({
     id,
   }: {

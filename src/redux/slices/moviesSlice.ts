@@ -11,6 +11,7 @@ type MoviesSliceType = {
   totalPages: number | null;
   totalResults: number | null;
   selectedGenres: number[];
+  searchPhrase: string;
 };
 
 const moviesInitialState: MoviesSliceType = {
@@ -20,6 +21,7 @@ const moviesInitialState: MoviesSliceType = {
   totalPages: null,
   totalResults: null,
   selectedGenres: [],
+  searchPhrase: "",
 };
 
 const loadMovies = createAsyncThunk(
@@ -33,19 +35,29 @@ const loadMovies = createAsyncThunk(
     if (state.page != 1) {
       query += `page=${state.page}`;
     }
+    if (state.searchPhrase) {
+      if (query) {
+        query = query + "&";
+      }
+      query += `query=${state.searchPhrase}`;
+    }
     if (state.selectedGenres) {
       if (query) {
         query = query + "&";
       }
       const genresString = JSON.stringify(state.selectedGenres);
-      query += `with_genres=${genresString.substring(1, genresString.length - 1)}`;
+      query += `with_genres=${genresString.substring(
+        1,
+        genresString.length - 1
+      )}`;
     }
     if (query) {
       query = "?" + query;
     }
 
     try {
-      const moviesResponse = await apiService.getMoviesList({ query });
+
+      const moviesResponse = state.searchPhrase ? await apiService.searchMoviesList({query}) : await apiService.getMoviesList({ query });
       return thunkAPI.fulfillWithValue(moviesResponse.data);
     } catch (e) {
       const error = e as AxiosError;
@@ -71,6 +83,9 @@ export const moviesSlice = createSlice({
     },
     changePage: (state, action) => {
       state.page = action.payload;
+    },
+    changeSearchPhrase: (state, action) => {
+      state.searchPhrase = action.payload;
     },
   },
 

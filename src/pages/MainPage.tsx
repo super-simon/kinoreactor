@@ -9,7 +9,9 @@ import { moviesActions } from "../redux/slices/moviesSlice";
 import { useAppDispatch, useAppSelector } from "../redux/store";
 
 const MainPage = () => {
-  const { selectedGenres, page } = useAppSelector((state) => state.moviesSlice);
+  const { selectedGenres, page, searchPhrase } = useAppSelector(
+    (state) => state.moviesSlice
+  );
 
   const [searchParams] = useSearchParams();
   const pageQeuryParamString = searchParams.get("page");
@@ -18,11 +20,13 @@ const MainPage = () => {
     pageQueryParam = +pageQeuryParamString;
   }
 
-  const slectedGenresQueryString = searchParams.get("genres");
+  const selectedGenresQueryString = searchParams.get("genres");
   let selectedGenresQueryParam: number[] = [];
-  if (slectedGenresQueryString) {
-    selectedGenresQueryParam = JSON.parse(slectedGenresQueryString);
+  if (selectedGenresQueryString) {
+    selectedGenresQueryParam = JSON.parse(selectedGenresQueryString);
   }
+
+  const searchPhraseQuery = searchParams.get("search") || "";
 
   const dispatch = useAppDispatch();
 
@@ -33,11 +37,17 @@ const MainPage = () => {
     if (page != pageQueryParam) {
       dispatch(moviesActions.changePage(pageQueryParam));
     }
-  }, [pageQueryParam, selectedGenresQueryParam]);
+
+    if (searchPhraseQuery != searchPhrase) {
+      dispatch(moviesActions.changeSearchPhrase(searchPhraseQuery));
+    }
+    console.log(searchPhraseQuery);
+  }, [pageQueryParam, selectedGenresQueryParam, searchPhraseQuery]);
 
   useEffect(() => {
+    console.log(searchPhrase);
     dispatch(moviesActions.loadMovies());
-  }, [page, selectedGenres]);
+  }, [page, selectedGenres, searchPhrase]);
 
   useEffect(() => {
     dispatch(genresActions.loadGenres());
