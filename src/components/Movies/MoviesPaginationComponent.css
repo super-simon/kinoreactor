@@ -9,6 +9,6 @@
 
 .paginationList li {
   border: 1px solid gray;
-  padding: 1em;
+  padding: 0.5em 1em;
   border-radius: 6px;
 }

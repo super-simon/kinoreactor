@@ -24,9 +24,8 @@
 }
 
 .layoutHeader {
-  height: 3em;
   border-bottom: 1px solid grey;
-  padding: 1em 2em;
+  padding: 0.5em 2em;
 }
 
 .layoutOutlet {

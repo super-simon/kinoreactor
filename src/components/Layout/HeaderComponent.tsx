@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import darkLightSwitcher from "../../assets/dark-light.png";
 import { generateSearchQuery } from "../../helpers/searchQueryHelper";
 import { settingsActions } from "../../redux/slices/settingsSlice";
 import { userActions } from "../../redux/slices/userSlice";
@@ -17,27 +18,36 @@ const HeaderComponent = () => {
   }, []);
 
   return (
-    <>
-      <input
-        type="text"
-        onChange={(e) =>
-          navigate(
-            generateSearchQuery({
-              page: 1,
-              genres: [],
-              search: e.target.value,
-            })
-          )
-        }
-        value={searchPhrase}
-        placeholder="search"
-      />
-      <img className="avatar" width="80px" src={avatar} alt="avatar" />
-      {name}
-      <button onClick={() => dispatch(settingsActions.toggleThemeStyle())}>
-        theme
-      </button>
-    </>
+    <div className="headerContainer">
+      <div className="logo">KINOREACTOR</div>
+      <div className="search">
+        <input
+          type="text"
+          onChange={(e) =>
+            navigate(
+              generateSearchQuery({
+                page: 1,
+                genres: [],
+                search: e.target.value,
+              })
+            )
+          }
+          value={searchPhrase}
+          placeholder="search"
+        />
+      </div>
+
+      <div className="user">
+        <img className="avatar" width="80px" src={avatar} alt="avatar" />
+        {name}
+        <img
+          className="darkLightSwitcher"
+          src={darkLightSwitcher}
+          alt="Dark and light theme switcher"
+          onClick={() => dispatch(settingsActions.toggleThemeStyle())}
+        />
+      </div>
+    </div>
   );
 };
 

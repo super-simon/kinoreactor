@@ -41,11 +41,9 @@ const MainPage = () => {
     if (searchPhraseQuery != searchPhrase) {
       dispatch(moviesActions.changeSearchPhrase(searchPhraseQuery));
     }
-    console.log(searchPhraseQuery);
   }, [pageQueryParam, selectedGenresQueryParam, searchPhraseQuery]);
 
   useEffect(() => {
-    console.log(searchPhrase);
     dispatch(moviesActions.loadMovies());
   }, [page, selectedGenres, searchPhrase]);
 
@@ -56,7 +54,6 @@ const MainPage = () => {
   return (
     <>
       <GenresComponent />
-      <MoviesPaginationComponent />
       <MoviesListComponent />
       <MoviesPaginationComponent />
     </>

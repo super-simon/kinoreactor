@@ -5,10 +5,12 @@ import { apiService } from "../../services/api.service";
 
 type GenresSliceType = {
   genres: IGenre[];
+  genresById: { [name: string]: number };
 };
 
 const genresInitialState: GenresSliceType = {
   genres: [],
+  genresById: {},
 };
 
 const loadGenres = createAsyncThunk(
@@ -31,6 +33,11 @@ export const genresSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(loadGenres.fulfilled, (state, action) => {
       state.genres = action.payload;
+      const genresById = {};
+      for (const key in action.payload) {
+        genresById[action.payload[key].id] = action.payload[key].name;
+      }
+      state.genresById = genresById;
     });
   },
 });
