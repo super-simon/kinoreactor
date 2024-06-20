@@ -55,8 +55,6 @@ const MainPage = () => {
 
   return (
     <>
-      MainPage
-      <br />
       <GenresComponent />
       <MoviesPaginationComponent />
       <MoviesListComponent />
