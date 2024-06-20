@@ -11,12 +11,12 @@ const axiosInstance = axios.create({
 
 export const apiService = {
   getMoviesList: async ({
-    page,
+    query,
   }: {
-    page: string;
+    query: string;
   }): Promise<AxiosResponse<IMovies>> => {
     const res = await axiosInstance.get<IMovies>(
-      urls.movies.list + `?page=${page}`
+      urls.movies.list + query ?? ""
     );
     return res;
   },

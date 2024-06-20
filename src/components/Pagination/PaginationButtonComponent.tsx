@@ -1,20 +1,33 @@
 import { FC } from "react";
 import { Link } from "react-router-dom";
+import { generateSearchQuery } from "../../helpers/searchQueryHelper";
+import { useAppSelector } from "../../redux/store";
 
 interface IProps {
-  page: number;
-  currentPage: number;
+  title: number;
 }
 
-const PaginationButtonComponent: FC<IProps> = ({ page, currentPage }) => {
+const PaginationButtonComponent: FC<IProps> = ({ title }) => {
+  const { selectedGenres, page: currentPage } = useAppSelector(
+    (state) => state.moviesSlice
+  );
+
   return (
     <>
-      {page == currentPage ? (
-        page
-      ) : page == 1 ? (
-        <Link to={{ pathname: "/" }}>{page}</Link>
+      {title == currentPage ? (
+        title
       ) : (
-        <Link to={{ pathname: "/", search: `?page=${page}` }}>{page}</Link>
+        <Link
+          to={{
+            pathname: "/",
+            search: generateSearchQuery({
+              page: title,
+              genres: selectedGenres,
+            }),
+          }}
+        >
+          {title}
+        </Link>
       )}
     </>
   );

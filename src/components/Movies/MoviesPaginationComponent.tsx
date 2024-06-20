@@ -1,10 +1,13 @@
 import { Link } from "react-router-dom";
+import { generateSearchQuery } from "../../helpers/searchQueryHelper";
 import { useAppSelector } from "../../redux/store";
 import PaginationButtonComponent from "../Pagination/PaginationButtonComponent";
 import "./MoviesPaginationComponent.css";
 
 const MoviesPaginationComponent = () => {
-  const { page, totalPages } = useAppSelector((state) => state.moviesSlice);
+  const { page, totalPages, selectedGenres } = useAppSelector(
+    (state) => state.moviesSlice
+  );
 
   let firstRangeLength: number,
     firstRange: number[],
@@ -99,12 +102,30 @@ const MoviesPaginationComponent = () => {
         <ul className="paginationList">
           {page && +page > 1 && (
             <li>
-              <Link to={{ pathname: "/" }}>{"<<"}</Link>
+              <Link
+                to={{
+                  pathname: "/",
+                  search: generateSearchQuery({
+                    page: 1,
+                    genres: selectedGenres,
+                  }),
+                }}
+              >
+                {"<<"}
+              </Link>
             </li>
           )}
           {page && +page > 2 && (
             <li>
-              <Link to={{ pathname: "/", search: `?page=${page - 1}` }}>
+              <Link
+                to={{
+                  pathname: "/",
+                  search: generateSearchQuery({
+                    page: page - 1,
+                    genres: selectedGenres,
+                  }),
+                }}
+              >
                 {"<"}
               </Link>
             </li>
@@ -112,11 +133,15 @@ const MoviesPaginationComponent = () => {
 
           {firstRange.map((p) => (
             <li key={p}>
-              <PaginationButtonComponent page={p} currentPage={page} />
+              <PaginationButtonComponent title={p} />
             </li>
           ))}
 
-          {middleRange.length == 0 && <li>...</li>}
+          {middleRange.length == 0 &&
+            !(firstRange.length == 0 || lastRange.length == 0) &&
+            firstRange[firstRange.length - 1] != lastRange[0] - 1 && (
+              <li>...</li>
+            )}
 
           {middleRange.length > 0 &&
             middleRange[0] != firstRange[firstRange.length - 1] + 1 && (
@@ -125,7 +150,7 @@ const MoviesPaginationComponent = () => {
 
           {middleRange.map((p) => (
             <li key={p}>
-              <PaginationButtonComponent page={p} currentPage={page} />
+              <PaginationButtonComponent title={p} />
             </li>
           ))}
 
@@ -136,20 +161,38 @@ const MoviesPaginationComponent = () => {
 
           {lastRange.map((p) => (
             <li key={p}>
-              <PaginationButtonComponent page={p} currentPage={page} />
+              <PaginationButtonComponent title={p} />
             </li>
           ))}
 
-          {page && +page < +totalPages - 1 && (
+          {page && +page < totalPages - 1 && (
             <li>
-              <Link to={{ pathname: "/", search: `?page=${page + 1}` }}>
+              <Link
+                to={{
+                  pathname: "/",
+                  search: generateSearchQuery({
+                    page: page + 1,
+                    genres: selectedGenres,
+                  }),
+                }}
+              >
                 {">"}
               </Link>
             </li>
           )}
           {page && +page < totalPages && (
             <li>
-              <Link to={{ pathname: "/" }}>{">>"}</Link>
+              <Link
+                to={{
+                  pathname: "/",
+                  search: generateSearchQuery({
+                    page: totalPages,
+                    genres: selectedGenres,
+                  }),
+                }}
+              >
+                {">>"}
+              </Link>
             </li>
           )}
         </ul>

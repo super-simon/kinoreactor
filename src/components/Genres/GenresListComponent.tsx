@@ -14,7 +14,6 @@ const GenresListComponent = () => {
   } else {
     selectedGenres = [];
   }
-  console.log(selectedGenres);
   return (
     <>
       <ul className="genresList">
