@@ -6,12 +6,14 @@ import { useAppSelector } from "./redux/store";
 function App() {
   const { themeStyle } = useAppSelector((state) => state.settingsSlice);
   return (
-    <div className={`layout ${themeStyle}`}>
-      <div className="layoutHeader">
-        <HeaderComponent />
-      </div>
-      <div className="layoutOutlet">
-        <Outlet />
+    <div className={`body ${themeStyle}`}>
+      <div className="layout">
+        <div className="layoutHeader">
+          <HeaderComponent />
+        </div>
+        <div className="layoutOutlet">
+          <Outlet />
+        </div>
       </div>
     </div>
   );

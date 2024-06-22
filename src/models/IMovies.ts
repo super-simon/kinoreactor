@@ -1,8 +1,8 @@
-import { IMovie } from "./IMovie";
+import { IMoviesListItem } from "./IMoviesListItem";
 
 export interface IMovies {
   page: number;
-  results: IMovie[];
+  results: IMoviesListItem[];
   total_pages: number;
   total_results: number;
 }

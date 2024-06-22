@@ -1,11 +1,12 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { AxiosError } from "axios";
 import { IMovie } from "../../models/IMovie";
+import { IMoviesListItem } from "../../models/IMoviesListItem";
 import { apiService } from "../../services/api.service";
 import { store } from "../store";
 
 type MoviesSliceType = {
-  movies: IMovie[];
+  movies: IMoviesListItem[];
   movie: IMovie | null;
   page: number;
   totalPages: number | null;
@@ -56,8 +57,9 @@ const loadMovies = createAsyncThunk(
     }
 
     try {
-
-      const moviesResponse = state.searchPhrase ? await apiService.searchMoviesList({query}) : await apiService.getMoviesList({ query });
+      const moviesResponse = state.searchPhrase
+        ? await apiService.searchMoviesList({ query })
+        : await apiService.getMoviesList({ query });
       return thunkAPI.fulfillWithValue(moviesResponse.data);
     } catch (e) {
       const error = e as AxiosError;

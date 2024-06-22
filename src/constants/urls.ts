@@ -10,6 +10,9 @@ const urls = {
     movie: "/genre/movie/list",
     tv: "/genre/tv/list",
   },
+  poster: {
+    w500: "https://image.tmdb.org/t/p/w500/",
+  },
 };
 
 export { baseURL, urls };

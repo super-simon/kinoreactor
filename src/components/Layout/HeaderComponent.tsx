@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import darkLightSwitcher from "../../assets/dark-light.png";
 import { generateSearchQuery } from "../../helpers/searchQueryHelper";
 import { settingsActions } from "../../redux/slices/settingsSlice";
@@ -19,17 +19,20 @@ const HeaderComponent = () => {
 
   return (
     <div className="headerContainer">
-      <div className="logo">KINOREACTOR</div>
+      <div className="logo">
+        <Link to="/">KINOREACTOR</Link>
+      </div>
       <div className="search">
         <input
           type="text"
           onChange={(e) =>
             navigate(
-              generateSearchQuery({
-                page: 1,
-                genres: [],
-                search: e.target.value,
-              })
+              "/" +
+                generateSearchQuery({
+                  page: 1,
+                  genres: [],
+                  search: e.target.value,
+                })
             )
           }
           value={searchPhrase}

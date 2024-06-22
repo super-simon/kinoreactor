@@ -1,7 +1,7 @@
 .moviesList {
   list-style-type: none;
   display: flex;
-  gap: 2em;
+  gap: 1.8em;
   flex-direction: row;
   padding: 0;
   flex-wrap: wrap;

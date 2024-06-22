@@ -1,6 +1,7 @@
 import axios, { AxiosResponse } from "axios";
 import { baseURL, urls } from "../constants/urls";
 import { IGenres } from "../models/IGenres";
+
 import { IMovie } from "../models/IMovie";
 import { IMovies } from "../models/IMovies";
 
@@ -15,9 +16,7 @@ export const apiService = {
   }: {
     query: string;
   }): Promise<AxiosResponse<IMovies>> => {
-    const res = await axiosInstance.get<IMovies>(
-      urls.movies.list + query ?? ""
-    );
+    const res = await axiosInstance.get<IMovies>(urls.movies.list + query);
     return res;
   },
 
@@ -26,9 +25,7 @@ export const apiService = {
   }: {
     query: string;
   }): Promise<AxiosResponse<IMovies>> => {
-    const res = await axiosInstance.get<IMovies>(
-      urls.movies.search + query ?? ""
-    );
+    const res = await axiosInstance.get<IMovies>(urls.movies.search + query);
     return res;
   },
 
