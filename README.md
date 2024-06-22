@@ -1,6 +1,6 @@
 # KINOREACTOR: Your Ultimate Movie Companion
 
-Welcome to **KINOREACTOR**, a sleek and intuitive web application built using the power of **React.js** and **TypeScript**. Designed with movie enthusiasts in mind, MovieFlix provides a seamless and enjoyable experience for discovering, exploring, and keeping track of your favorite movies.
+Welcome to **KINOREACTOR**, a sleek and intuitive web application built using the power of **React.js** and **TypeScript**. Designed with movie enthusiasts in mind, KINOREACTOR provides a seamless and enjoyable experience for discovering, exploring, and keeping track of your favorite movies.
 
 ## Key Features
 
@@ -11,8 +11,8 @@ Welcome to **KINOREACTOR**, a sleek and intuitive web application built using th
 ### 📚 Detailed Movie Information
 
 ### 📱 Responsive Design
-- **Mobile-Friendly:** Enjoy MovieFlix on any device, with a responsive design that ensures a smooth experience on both desktop and mobile.
-- **Progressive Web App (PWA):** Install MovieFlix on your device for a native app-like experience with offline support.
+- **Mobile-Friendly:** Enjoy KINOREACTOR on any device, with a responsive design that ensures a smooth experience on both desktop and mobile.
+- **Progressive Web App (PWA):** Install KINOREACTOR on your device for a native app-like experience with offline support.
 
 ## Technical Specifications
 
@@ -46,4 +46,4 @@ Welcome to **KINOREACTOR**, a sleek and intuitive web application built using th
    ```bash
    npm run dev
    ```
-2. Open your browser and visit `http://localhost:5173` to see MovieFlix in action.
+2. Open your browser and visit `http://localhost:5173` to see KINOREACTOR in action.
