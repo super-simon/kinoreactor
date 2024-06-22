@@ -16,11 +16,13 @@ const MoviesListItemComponent: FC<IProps> = ({ movie }) => {
     <>
       <div className="imgWrap">
         <div className="posterContainer">
-          <img
-            className="poster"
-            src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-            alt={movie.title}
-          />
+          <Link to={`/movie/${movie.id}`}>
+            <img
+              className="poster"
+              src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+              alt={movie.title}
+            />
+          </Link>
         </div>
 
         <div className="genres">
