@@ -11,6 +11,7 @@ Welcome to **KINOREACTOR**, a sleek and intuitive web application built using th
 ### 📚 Detailed Movie Information
 
 ### 📱 Responsive Design
+
 - **Mobile-Friendly:** Enjoy KINOREACTOR on any device, with a responsive design that ensures a smooth experience on both desktop and mobile.
 - **Progressive Web App (PWA):** Install KINOREACTOR on your device for a native app-like experience with offline support.
 
@@ -18,16 +19,18 @@ Welcome to **KINOREACTOR**, a sleek and intuitive web application built using th
 
 - **React.js:** Leveraging the power of React for a dynamic and responsive user interface.
 - **TypeScript:** Ensuring type safety and improved developer experience with TypeScript.
-- **Redux:** Managing global state seamlessly with Redux for predictable state management.
+- **Redux Tookit:** Managing global state seamlessly with Redux for predictable state management.
 - **Axios:** Making HTTP requests easy and efficient with Axios for fetching movie data from external APIs.
 - **Vite:** Next Generation Frontend Tooling
 
 ## Getting Started
 
 ### Prerequisites
+
 - **Node.js** and **npm**: Ensure you have Node.js and npm installed on your machine.
 
 ### Installation
+
 1. Clone the repository:
    ```bash
    git clone https://github.com/super-simon/kinoreactor
@@ -42,6 +45,7 @@ Welcome to **KINOREACTOR**, a sleek and intuitive web application built using th
    ```
 
 ### Running the Application
+
 1. Start the development server:
    ```bash
    npm run dev
